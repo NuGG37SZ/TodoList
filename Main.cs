@@ -35,13 +35,6 @@ namespace TodoList
             form.Show();
         }
 
-        private void AllTaskFormButton(object sender, EventArgs e)
-        {
-            AllTask form = new AllTask(this);
-            this.Hide();
-            form.Show();
-        }
-
         private void DeleteForm(object sender, EventArgs e)
         {
             Delete form = new Delete(this);
