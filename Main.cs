@@ -28,26 +28,11 @@ namespace TodoList
             return Tasks;
         }
 
-        private void EditForm(object sender, EventArgs e)
-        {
-            Edit form = new Edit(this);
-            this.Hide();
-            form.Show();
-        }
-
         private void AllTaskFormButton(object sender, EventArgs e)
         {
             AllTask form = new AllTask(this);
             this.Hide();
             form.Show();
         }
-
-        private void DeleteForm(object sender, EventArgs e)
-        {
-            Delete form = new Delete(this);
-            this.Hide();
-            form.Show();
-        }
-
     }
 }

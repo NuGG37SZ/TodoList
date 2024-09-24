@@ -38,9 +38,7 @@
             this.TaskStartDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.CreateButton = new System.Windows.Forms.Button();
-            this.EditFormButton = new System.Windows.Forms.Button();
             this.AllTaskForm = new System.Windows.Forms.Button();
-            this.DeleteTask = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -136,19 +134,9 @@
             this.CreateButton.UseVisualStyleBackColor = true;
             this.CreateButton.Click += new System.EventHandler(this.CreateTask);
             // 
-            // EditFormButton
-            // 
-            this.EditFormButton.Location = new System.Drawing.Point(171, 430);
-            this.EditFormButton.Name = "EditFormButton";
-            this.EditFormButton.Size = new System.Drawing.Size(133, 54);
-            this.EditFormButton.TabIndex = 10;
-            this.EditFormButton.Text = "Изменение";
-            this.EditFormButton.UseVisualStyleBackColor = true;
-            this.EditFormButton.Click += new System.EventHandler(this.EditForm);
-            // 
             // AllTaskForm
             // 
-            this.AllTaskForm.Location = new System.Drawing.Point(325, 430);
+            this.AllTaskForm.Location = new System.Drawing.Point(325, 390);
             this.AllTaskForm.Name = "AllTaskForm";
             this.AllTaskForm.Size = new System.Drawing.Size(133, 54);
             this.AllTaskForm.TabIndex = 11;
@@ -156,26 +144,13 @@
             this.AllTaskForm.UseVisualStyleBackColor = true;
             this.AllTaskForm.Click += new System.EventHandler(this.AllTaskFormButton);
             // 
-            // DeleteTask
-            // 
-            this.DeleteTask.Location = new System.Drawing.Point(478, 430);
-            this.DeleteTask.Name = "DeleteTask";
-            this.DeleteTask.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.DeleteTask.Size = new System.Drawing.Size(133, 54);
-            this.DeleteTask.TabIndex = 12;
-            this.DeleteTask.Text = "Удаление";
-            this.DeleteTask.UseVisualStyleBackColor = true;
-            this.DeleteTask.Click += new System.EventHandler(this.DeleteForm);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.DeleteTask);
             this.Controls.Add(this.AllTaskForm);
-            this.Controls.Add(this.EditFormButton);
             this.Controls.Add(this.CreateButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.TaskStartDate);
@@ -206,9 +181,7 @@
         private System.Windows.Forms.DateTimePicker TaskStartDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button CreateButton;
-        private System.Windows.Forms.Button EditFormButton;
         private System.Windows.Forms.Button AllTaskForm;
-        private System.Windows.Forms.Button DeleteTask;
     }
 }
 
