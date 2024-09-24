@@ -10,10 +10,10 @@ namespace TodoList
 
         private Dictionary<int, Task> Tasks;
 
-        public AllTask(Main main, Dictionary<int, Task> tasks)
+        public AllTask(Main main)
         {
             this.MainForm = main;
-            this.Tasks = tasks;
+            Tasks = MainForm.GetTasks();
             InitializeComponent();
         }
 
@@ -21,8 +21,8 @@ namespace TodoList
         {
             TaskGridView.DataSource = new BindingSource(Tasks, null);
 
-            //TaskGridView.Columns.Remove("Key");
-            //TaskGridView.Columns.Remove("Value");
+            TaskGridView.Columns.Remove("Key");
+            TaskGridView.Columns.Remove("Value");
 
             TaskGridView.Columns.Add(new DataGridViewTextBoxColumn()
             {
@@ -59,23 +59,26 @@ namespace TodoList
                 ValueType = typeof(string)
             });
 
-            for (int i = 0; i < Tasks.Count; i++)
+            int rowIndex = 0;
+            foreach (var pair in Tasks)
             {
-                Task currentTask = Tasks[i + 1];
+                int key = pair.Key;
+                Task currentTask = pair.Value;
 
-                TaskGridView.Rows[i].Cells["id"].Value = i;
-                TaskGridView.Rows[i].Cells["name"].Value = currentTask.Name;
-                TaskGridView.Rows[i].Cells["executor"].Value = currentTask.ExecutorName;
-                TaskGridView.Rows[i].Cells["priority"].Value = currentTask.Priority;
-                TaskGridView.Rows[i].Cells["datStartTask"].Value = currentTask.StartTaskDate;
+                TaskGridView.Rows[rowIndex].Cells["id"].Value = key;
+                TaskGridView.Rows[rowIndex].Cells["name"].Value = currentTask.Name;
+                TaskGridView.Rows[rowIndex].Cells["executor"].Value = currentTask.ExecutorName;
+                TaskGridView.Rows[rowIndex].Cells["priority"].Value = currentTask.Priority;
+                TaskGridView.Rows[rowIndex].Cells["datStartTask"].Value = currentTask.StartTaskDate;
+
+                rowIndex++;
             }
         }
 
-        private void MainFormButton_Click(object sender, EventArgs e)
+        private void MainFormButtonClick(object sender, EventArgs e)
         {
-            Main form = new Main();
-            form.ShowDialog();
-            this.Close();
+            this.Hide();
+            MainForm.Show();
         }
     }
 }

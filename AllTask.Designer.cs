@@ -60,7 +60,7 @@
             this.MainFormButton.TabIndex = 13;
             this.MainFormButton.Text = "Назад";
             this.MainFormButton.UseVisualStyleBackColor = true;
-            this.MainFormButton.Click += new System.EventHandler(this.MainFormButton_Click);
+            this.MainFormButton.Click += new System.EventHandler(this.MainFormButtonClick);
             // 
             // AllTask
             // 

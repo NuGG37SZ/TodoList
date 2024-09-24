@@ -10,10 +10,10 @@ namespace TodoList
 
         private Dictionary<int, Task> Tasks;
 
-        public Delete(Main main, Dictionary<int, Task> tasks)
+        public Delete(Main main)
         {
             this.MainForm = main;
-            this.Tasks = tasks;
+            Tasks = MainForm.GetTasks();
             InitializeComponent();
         }
 
@@ -27,14 +27,13 @@ namespace TodoList
 
         private void DeleteTask(object sender, EventArgs e)
         {
-            Tasks.Remove(Convert.ToInt32(IdsTask.Text));
+            Tasks.Remove(Convert.ToInt32(IdsTask.Text) + 1);
         }
 
         private void GoMainFormButton(object sender, EventArgs e)
         {
-            Main form = new Main();
-            form.ShowDialog();
-            this.Close();
+            this.Hide();
+            MainForm.Show();
         }
     }
 }

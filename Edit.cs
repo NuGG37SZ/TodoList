@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace TodoList
 {
     public partial class Edit : Form
     {
-        private Main MainForm = new Main();
+        private Main MainForm;
 
         private Dictionary<int, Task> Tasks;
 
-        public Edit(Main main, Dictionary<int, Task> tasks)
+        public Edit(Main main)
         {
-            this.MainForm = main;
-            Tasks = tasks;
+            MainForm = main;
+            Tasks = MainForm.GetTasks();
             InitializeComponent();
         }
 
@@ -21,7 +23,7 @@ namespace TodoList
         {       
             for(int i = 0; i < Tasks.Count; i++)
             {
-                IdsTaskBox.Items.Add(i);
+                IdsTaskBox.Items.Add(i + 1);
             }
         }
 
@@ -30,40 +32,29 @@ namespace TodoList
             int currentId = Convert.ToInt32(IdsTaskBox.Text);
             Task currentTask = Tasks[currentId];
 
-            if (currentTask != null)
-            {
-                NameTask.Text = currentTask.Name;
-                PriorityTask.Text = currentTask.Priority.ToString();
-                Executor.Text = currentTask.ExecutorName;
-                TaskStartDate.Text = currentTask.StartTaskDate.ToString();
-
-                Task newTask = new Task(NameTask.Text, Executor.Text, Convert.ToInt32(PriorityTask.Text), 
+            Task newTask = new Task(NameTask.Text, Executor.Text, Convert.ToInt32(PriorityTask.Text), 
                     Convert.ToDateTime(TaskStartDate.Text));
-                Tasks[currentId] = newTask;
-            }
+            Tasks[currentId] = newTask;
+
+            MessageBox.Show("Задача была изменена!!!");
         }
-
-
 
         private void GoMainFormButton(object sender, EventArgs e)
         {
-            Main form = new Main();
-            form.ShowDialog();
-            this.Close();
+            this.Hide();
+            MainForm.Show();
         }
 
         private void IdsTaskBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int currentId = Convert.ToInt32(IdsTaskBox.Text);
-            Task currentTask = Tasks[currentId + 1];
+            Task currentTask = Tasks[currentId];
 
-            if (currentTask != null)
-            {
-                NameTask.Text = currentTask.Name;
-                PriorityTask.Text = currentTask.Priority.ToString();
-                Executor.Text = currentTask.ExecutorName;
-                TaskStartDate.Text = currentTask.StartTaskDate.ToString();
-            }
+            NameTask.Text = currentTask.Name;
+            PriorityTask.Text = currentTask.Priority.ToString();
+            Executor.Text = currentTask.ExecutorName;
+            TaskStartDate.Text = currentTask.StartTaskDate.ToString();
+
         }
     }
 }
